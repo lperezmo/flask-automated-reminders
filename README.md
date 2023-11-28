@@ -1,13 +1,13 @@
 # Remind Me App
 
 ## Overview
-The Remind Me App is a Flask-based application designed to schedule reminders via text or email at specific times. It leverages APScheduler for scheduling and can be integrated with function-calling assistants like OpenAI's models to enhance reminder functionalities.
+The Remind Me App is a Flask-based application designed to schedule reminders via text or email at specific times. It leverages APScheduler for scheduling and can be integrated with function-calling LLM assistants.
 
 ## Features
 - Schedule reminders at specific times.
 - Send reminders via text message or email.
 - Flask API for easy integration.
-- Use with OpenAI's function-calling assistants for an automated experience.
+- Use with any function-calling LLMs
 
 ## Getting Started
 To get started with the Remind Me App, clone the repository and install the necessary dependencies.

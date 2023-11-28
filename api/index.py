@@ -23,8 +23,8 @@ logger.addHandler(console_handler)
 #-----------------------------#
 # App config
 #-----------------------------#
-application = Flask(__name__)
-CORS(application)
+app = Flask(__name__)
+CORS(app)
 scheduler = BackgroundScheduler()
 scheduler.start()
 
@@ -120,7 +120,7 @@ index_page ="""
 	<div class="container">
 		<h1>Remind Me App</h1>
 		<h4>A way to get text/email reminders at specific times using an API</h4>
-		<p>This is a Flask application that uses APScheduler to send text and emails at a specific times
+		<p>This is a Flask app that uses APScheduler to send text and emails at a specific times
 		The API can in turn be used alongside LLM function-calling assistants to create a reminder assistant</p>
 		<a href="https://github.com/lperezmo/embeddings-extraction/">Learn More</a>
 	</div>
@@ -197,7 +197,7 @@ def send_email_aws_ses(to_email, subject, body_text, from_email):
 		return True
 
 
-@application.route('/schedule_single_reminder', methods=['POST'])
+@app.route('/schedule_single_reminder', methods=['POST'])
 def schedule_single_reminder():
 	content = request.json
 	time = content['time']
@@ -293,15 +293,15 @@ def schedule_single_reminder():
 #-----------------------------#
 # API docs
 #-----------------------------#
-@application.route("/openapi.yml")
+@app.route("/openapi.yml")
 def serve_openapi():
     return send_from_directory("static", "openapi.yml", mimetype="text/plain")
 
 #-----------------------------#
 # Index page
 #-----------------------------#
-application.add_url_rule('/', 'index', (lambda: index_page))
+app.add_url_rule('/', 'index', (lambda: index_page))
 
 if __name__ == '__main__':
-	application.debug = True
-	application.run()
+	app.debug = True
+	app.run()
