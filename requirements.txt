@@ -1,1 +1,7 @@
-Flask==3.0.0
+Flask==2.3.2
+werkzeug==2.3.4
+Flask-Cors==3.0.10
+openai==0.27.8
+twilio==8.10.2
+APScheduler==3.10.4
+boto3==1.26.60

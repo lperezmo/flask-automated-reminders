@@ -1,28 +1,46 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fflask3&demo-title=Flask%203%20%2B%20Vercel&demo-description=Use%20Flask%203%20on%20Vercel%20with%20Serverless%20Functions%20using%20the%20Python%20Runtime.&demo-url=https%3A%2F%2Fflask3-python-template.vercel.app%2F&demo-image=https://assets.vercel.com/image/upload/v1669994156/random/flask.png)
+# Remind Me App
 
-# Flask + Vercel
+## Overview
+The Remind Me App is a Flask-based application designed to schedule reminders via text or email at specific times. It leverages APScheduler for scheduling and can be integrated with function-calling assistants like OpenAI's models to enhance reminder functionalities.
 
-This example shows how to use Flask 3 on Vercel with Serverless Functions using the [Python Runtime](https://vercel.com/docs/concepts/functions/serverless-functions/runtimes/python).
+## Features
+- Schedule reminders at specific times.
+- Send reminders via text message or email.
+- Flask API for easy integration.
+- Use with OpenAI's function-calling assistants for an automated experience.
 
-## Demo
+## Getting Started
+To get started with the Remind Me App, clone the repository and install the necessary dependencies.
 
-https://flask-python-template.vercel.app/
+### Prerequisites
+- Python
+- Flask
+- APScheduler
+- Boto3 for Amazon SES emails
+- Twilio for text messaging & calls (optional)
 
-## How it Works
-
-This example uses the Web Server Gateway Interface (WSGI) with Flask to enable handling requests on Vercel with Serverless Functions.
-
-## Running Locally
-
-```bash
-npm i -g vercel
-vercel dev
+### Installation
+1. Clone the repository:
+```
+git clone https://github.com/lperezmo/automated-reminders.git
+```
+2. Install the dependencies:
+```
+pip install -r requirements.txt
 ```
 
-Your Flask application is now available at `http://localhost:3000`.
+### Usage
+Run the Flask application:
+```
+python app.py
+```
+Use the `/schedule_single_reminder` endpoint to set up reminders.
 
-## One-Click Deploy
+## API Reference
+Refer to the OpenAPI documentation for detailed API usage.
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
+## Contributing
+Contributions to the Remind Me App are welcome. Please read `CONTRIBUTING.md` for details on our code of conduct, and the process for submitting pull requests.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fflask3&demo-title=Flask%203%20%2B%20Vercel&demo-description=Use%20Flask%203%20on%20Vercel%20with%20Serverless%20Functions%20using%20the%20Python%20Runtime.&demo-url=https%3A%2F%2Fflask3-python-template.vercel.app%2F&demo-image=https://assets.vercel.com/image/upload/v1669994156/random/flask.png)
+## License
+This project is licensed under the MIT License - see the `LICENSE.md` file for details.
