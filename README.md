@@ -9,6 +9,9 @@ The Remind Me App is a Flask-based application designed to schedule reminders vi
 - Flask API for easy integration.
 - Use with any function-calling LLMs
 
+## How to run for free
+Change the `send_email_aws_ses` function for any other email sending function. Many open source alternatives exist (for example see https://github.com/lperezmo/email-sender). I haven't yet found a phone call alternative to Twilio, but let me know if you know of any.
+
 ## Getting Started
 To get started with the Remind Me App, clone the repository and install the necessary dependencies.
 

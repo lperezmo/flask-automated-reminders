@@ -230,9 +230,6 @@ def schedule_single_reminder():
 
 	# Time of the reminder
 	reminder_time = datetime.datetime.strptime(f"{day} {time}", "%Y-%m-%d %H:%M")
-	
-	# Add 20 hours (AWS time difference)
-	reminder_time = reminder_time + datetime.timedelta(hours=8)
 
 	if twilio == "False" and call == "False":
 		# Schedule the email sending job
