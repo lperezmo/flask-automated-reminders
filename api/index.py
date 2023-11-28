@@ -122,7 +122,7 @@ index_page ="""
 		<h4>A way to get text/email reminders at specific times using an API</h4>
 		<p>This is a Flask app that uses APScheduler to send text and emails at a specific times
 		The API can in turn be used alongside LLM function-calling assistants to create a reminder assistant</p>
-		<a href="https://github.com/lperezmo/embeddings-extraction/">Learn More</a>
+		<a href="https://github.com/lperezmo/flask-automated-reminders">Learn More</a>
 	</div>
 
 	<footer>
