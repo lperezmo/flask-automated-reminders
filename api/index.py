@@ -292,7 +292,7 @@ def schedule_reminder_aws():
     content = request.json
     
     # Endpoint where we want to redirect the POST request
-    target_url = os.get('YOUR_ELASTIC_BEANSTALK_URL')
+    target_url = os.environ['YOUR_ELASTIC_BEANSTALK_URL']
     
     # Forward the request to the target URL and get the response
     response = requests.post(target_url, json=content)
