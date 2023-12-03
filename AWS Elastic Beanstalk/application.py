@@ -23,8 +23,8 @@ logger.addHandler(console_handler)
 #-----------------------------#
 # App config
 #-----------------------------#
-app = Flask(__name__)
-CORS(app)
+application = Flask(__name__)
+CORS(application)
 scheduler = BackgroundScheduler()
 scheduler.start()
 
@@ -120,9 +120,9 @@ index_page ="""
 	<div class="container">
 		<h1>Remind Me App</h1>
 		<h4>A way to get text/email reminders at specific times using an API</h4>
-		<p>This is a Flask app that uses APScheduler to send text and emails at a specific times
+		<p>This is a Flask application that uses APScheduler to send text and emails at a specific times
 		The API can in turn be used alongside LLM function-calling assistants to create a reminder assistant</p>
-		<a href="https://github.com/lperezmo/flask-automated-reminders">Learn More</a>
+		<a href="https://github.com/lperezmo/embeddings-extraction/">Learn More</a>
 	</div>
 
 	<footer>
@@ -197,7 +197,7 @@ def send_email_aws_ses(to_email, subject, body_text, from_email):
 		return True
 
 
-@app.route('/schedule_single_reminder', methods=['POST'])
+@application.route('/schedule_single_reminder', methods=['POST'])
 def schedule_single_reminder():
 	content = request.json
 	time = content['time']
@@ -226,10 +226,13 @@ def schedule_single_reminder():
 	try:
   		to_email = content['to_email']
 	except KeyError:
-		to_email = 'r....34@zapiermail.com'
+		to_email = 'remindme.h2i034@zapiermail.com'
 
 	# Time of the reminder
 	reminder_time = datetime.datetime.strptime(f"{day} {time}", "%Y-%m-%d %H:%M")
+	
+	# Add 20 hours (AWS time difference)
+	reminder_time = reminder_time + datetime.timedelta(hours=8)
 
 	if twilio == "False" and call == "False":
 		# Schedule the email sending job
@@ -286,32 +289,19 @@ def schedule_single_reminder():
 		)
 
 		return jsonify({"status": "Reminder scheduled successfully (call + email + zap)"})
-
-@app.route('/schedule_reminder_aws', methods=['POST'])
-def schedule_reminder_aws():
-    content = request.json
-    
-    # Endpoint where we want to redirect the POST request
-    target_url = os.get('YOUR_ELASTIC_BEANSTALK_URL')
-    
-    # Forward the request to the target URL and get the response
-    response = requests.post(target_url, json=content)
-    
-    # Return the response from the target URL to the original caller
-    return jsonify(response.json()), response.status_code
-
+	
 #-----------------------------#
 # API docs
 #-----------------------------#
-@app.route("/openapi.yml")
+@application.route("/openapi.yml")
 def serve_openapi():
     return send_from_directory("static", "openapi.yml", mimetype="text/plain")
 
 #-----------------------------#
 # Index page
 #-----------------------------#
-app.add_url_rule('/', 'index', (lambda: index_page))
+application.add_url_rule('/', 'index', (lambda: index_page))
 
 if __name__ == '__main__':
-	app.debug = True
-	app.run()
+	application.debug = True
+	application.run()

@@ -1,0 +1,64 @@
+openapi: 3.0.0
+info:
+  title: Reminder API
+  version: "1.0"
+servers:
+  - url: http://...elasticbeanstalk.com/
+    description: Reminder flask API
+
+paths:
+  /schedule_single_reminder:
+    post:
+      summary: Schedule a single reminder
+      operationId: scheduleSingleReminder
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                time:
+                  type: string
+                  example: '14:30'
+                day:
+                  type: string
+                  example: '2023-11-27'
+                message_body:
+                  type: string
+                  example: 'This is a test reminder'
+                twilio:
+                  type: string
+                  example: 'True'
+                  default: 'False'
+                call:
+                  type: string
+                  example: 'True'
+                  default: 'False'
+                to_number:
+                  type: string
+                  example: '+15558675309'
+                  default: '+15554443333'
+                to_email:
+                  type: string
+                  example: 'user@example.com'
+                  default: 'rem...34@zapiermail.com'
+              required:
+                - time
+                - day
+                - message_body
+      responses:
+        "200":
+          description: Reminder scheduled successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: 'Reminder scheduled successfully (email + zap)'
+        "400":
+          description: Invalid input
+        "500":
+          description: Internal server error
