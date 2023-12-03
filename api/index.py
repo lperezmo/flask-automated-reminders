@@ -3,6 +3,7 @@ import json
 import boto3
 import logging
 import datetime
+import requests
 from time import sleep
 from flask_cors import CORS
 from twilio.rest import Client
