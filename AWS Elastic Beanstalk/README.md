@@ -79,3 +79,7 @@ Feel free to customize the Flask app according to your needs. You can modify the
 ## Deployment
 
 To deploy any changes to your app, simply commit your changes and run:
+
+```bash
+eb deploy
+```
